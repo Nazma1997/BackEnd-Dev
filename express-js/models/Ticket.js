@@ -1,5 +1,10 @@
 const shortid = require('shortid');
 class Ticket {
+  /**
+   * Constructor
+   * @param {String} username 
+   * @param {Number} price 
+   */
   constructor(username, price){
         this.id = shortid.generate();
         this.username = username;
