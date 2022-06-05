@@ -9,3 +9,10 @@
 - Raffle Draw
 
 
+# Ticket Model #
+ - Number(unique)
+ - User Name
+ - Price
+ - Timestamp
+ 
+ 
