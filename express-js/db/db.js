@@ -112,7 +112,16 @@ class MyDB {
            return false;
          }
    }
+ deleteByUsername(username){
+   const index = this.tickets.findIndex((ticket) => ticket.username == username);
+   if(index !== -1){
+     this.ticket.splice(index,1);
+     return true;
+   } else{
+     return false;
+   }
 
+ }
     /**
      * find winners
      * @param {Number} winnerCount 
