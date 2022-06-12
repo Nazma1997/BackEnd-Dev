@@ -41,7 +41,7 @@ router.post('/sell', (req, res) => {
    res.status(201).json({message: 'Ticket Created SuccessFully', ticket});
 });
 router.post('/bulk', (req, res) => {
-  const {username, price} = req.body;
+  const {username, price,quantity} = req.body;
   const tickets = db.bulkCreate(username, price, quantity);
   res.status(201).json({message: 'Ticket Created SuccessFully', tickets});
 });
@@ -58,4 +58,5 @@ router.get('/tickets', (req, res) => {
 
 
 
+// module.exports = ticket;
 module.exports = router;
