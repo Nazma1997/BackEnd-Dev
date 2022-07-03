@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const authenticate = require('./middleware/authenticate')
 const User = require('./models/User');
 const connectDB = require('./db');
 
@@ -60,12 +62,33 @@ app.use(express.json());
 
        delete user._doc.password;
 
-
-       return res.status(200).json({message: 'Login Successfully', user})
+       token = jwt.sign(user._doc, 'secret-key', {expiresIn: '2h'})
+       return res.status(200).json({message: 'Login Successfully', token})
    }catch(e){
     next(e)
    }
- })
+ });
+
+
+ /**
+  * public route
+  */
+  app.get('/public', authenticate, (req, res) => {
+
+    return res.status(200).json({message: 'I am from public route'})
+  });
+
+
+  /**
+   * private route
+   */
+
+  app.get('/private', authenticate, (req, res) => {
+
+
+
+    return res.status(200).json({message: 'I am from private route'})
+  })
 
 
 
